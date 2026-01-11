@@ -1,0 +1,84 @@
+:root {
+    --primary-color: #2c7a7b; /* Teal for Health/Env */
+    --accent-color: #e53e3e;  /* Red for Heat/Danger */
+    --glass-bg: rgba(23, 25, 35, 0.85); /* Dark Glass */
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-main: #f7fafc;
+    --text-muted: #a0aec0;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text-main);
+}
+
+/* Base Map */
+#map {
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Glass Navbar */
+.bg-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.text-light-50 {
+    color: rgba(255,255,255,0.6);
+}
+
+/* Floating Controls */
+.floating-panel {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    z-index: 1000;
+}
+
+.panel-body {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Impact Modal */
+.glass-modal {
+    background: #1a202c;
+    color: white;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+}
+
+.x-small {
+    font-size: 0.7rem;
+}
+
+/* Custom Overrides for Leaflet Controls to Match Theme */
+.leaflet-control-zoom a {
+    background: #2d3748 !important;
+    color: white !important;
+    border: 1px solid var(--glass-border) !important;
+}
+
+/* Responsive Fixes */
+@media (max-width: 576px) {
+    .floating-panel {
+        bottom: 20px;
+        width: 95%;
+    }
+}
