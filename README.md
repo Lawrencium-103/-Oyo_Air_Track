@@ -1,45 +1,48 @@
-# 🌍 Oyo Air Quality & Heat Tracker
+# Oyo Air Quality & Heat Tracker 🌍
 
-> **A Citizen Science Initiative for SDG 3, 11, and 13.**
-> *Monitoring invisible threats to health and climate in Oyo State.*
+### Bringing Hidden Data to Life for a Healthier Oyo State
 
-## 📋 Project Overview
-The **Oyo Air Quality & Heat Tracker** is a progressive web application designed to empower citizens, policymakers, and health workers with real-time environmental data. By visualizing air quality indices (AQI) and heat stress levels across 33 Local Government Areas (LGAs), we aim to reduce respiratory illnesses and heat-related mortality.
-
-This tool is built to be **accessible everywhere**—working offline in remote areas and installable on any smartphone without an app store.
-
-## 🎯 Impact Matrix: Sustainable Development Goals (SDGs)
-This project directly targets the following UN SDGs:
-
-| SDG Goal | Target | How This App Contributes |
-|:--- |:--- |:--- |
-| **SDG 3: Good Health & Well-being** | **3.9**: Reduce illness from air pollution. | Provides real-time health advice based on PM2.5 levels, alerting users when to stay indoors or wear masks. |
-| **SDG 11: Sustainable Cities** | **11.6**: Reduce adverse environmental impact of cities. | Generates granular data on urban air quality (Ibadan metropolis vs. rural areas) to inform urban planning. |
-| **SDG 13: Climate Action** | **13.3**: Improve education on climate change. | Visualizes the invisible "Heat Island Effect" and wind patterns, making climate change tangible for local communities. |
-
-## 🚀 Key Features (MVP)
-- **Real-Time Monitoring**: Live AQI and Weather data for all 33 Oyo LGAs.
-- **Health Intelligence**: Automatic health recommendations (e.g., "Air is Poor - Sensitive groups should allow masks").
-- **Offline-First (PWA)**: Works even with spotty internet connections in rural LGAs.
-- **Wind Dynamics**: Visual layer showing wind speed/direction to understand pollution dispersion.
-
-## 🛠️ Technology Stack
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript (Lightweight & Fast).
-- **Mapping**: Leaflet.js & OpenStreetMap.
-- **Data Source**: OpenWeatherMap API.
-- **Deployment**: Zero-cost static hosting (GitHub Pages ready).
-
-## 📱 How to Install (0 Data Cost)
-1. Open the website in Chrome or Safari on your phone.
-2. Tap the "Share" button (iOS) or "Menu" (Android).
-3. Select **"Add to Home Screen"**.
-4. The app now works like a native app!
-
-## 🤝 Grant & Funding Usage
-This MVP demonstrates technical feasibility. Grant funding will be utilized for:
-1. **IoT Sensor Network**: Deploying low-cost physical sensors in market areas (Bodija, Aleshinloye) for ground-truth data validation.
-2. **Community Workshops**: Training community health extension workers to use the app.
-3. **SMS Integration**: Broadcasting alerts to non-smartphone users.
+Hi, I'm **Lawrence Oladeji**.  
+I'm a Data Associate at NAKC, and in my free time, I build AI-integrated products that try to make a small dent in the universe. I'm a huge advocate for the Sustainable Development Goals (SDGs), and this project is my contribution to that mission.
 
 ---
-*Built with ❤️ for a sustainable future.*
+
+## 🤷‍♂️ Why does this exist?
+
+Let's be honest—air quality data exists, but it's usually buried in complex scientific sites or expensive reports. The average citizen in Ibadan or Ogbomosho doesn't know if the air they breathe is safe *right now*. 
+
+I didn't like that. I believe that **monitoring our environment shouldn't be a luxury**. It should be as easy as checking the time.
+
+Access to information is the first step to action. Without knowing there's a problem (like a heat island or a pollution hotspot), we can't push for the policies that fix them.
+
+## 🚀 What does this actually do?
+
+This tool democratizes access to environmental data. It's built for **0 Naira**, powered by open data, and designed to work on the phone in your pocket.
+
+It helps us achieve three critical goals:
+
+1.  **SDG 3 (Good Health):** It gives you real-time alerts. If the air is poor, you know to wear a mask or stay indoors. This acts as a preventative measure against respiratory illnesses.
+2.  **SDG 11 (Sustainable Cities):** By visualizing pollution hotspots, we provide the "proof" needed for better urban planning and waste management discussions.
+3.  **SDG 13 (Climate Action):** It visualizes heat islands, helping us understand where we need to plant more trees or change our building habits to build local climate resilience.
+
+## 💡 How it works (The Tech)
+
+I wanted this to be fast, beautiful, and accessible.
+-   **No Backend bloat:** It's a pure static web app.
+-   **Real-time Data:** Connects directly to the OpenWeatherMap API for live reading.
+-   **visuals:** Uses Leaflet.js for mapping and a custom wind-layer to show you *how* the air is moving, not just *what* it is.
+
+## 🤝 Join the Mission
+
+This isn't just code; it's a movement. Every time you open this app, you're becoming a citizen scientist.
+
+**Impact by the numbers:**
+This tool has been used to check air quality **<span id="github-view-count">hundreds</span>** of times by concerned citizens like you.
+
+---
+
+**Get in Touch**  
+If you want to talk about Data, AI, or how we can build more things for the SDGs, reach out.
+
+📧 **Email:** [oladeji.lawrence@gmail.com](mailto:oladeji.lawrence@gmail.com)  
+💬 **WhatsApp:** [+234 903 881 9790](https://wa.me/2349038819790)  

@@ -600,3 +600,26 @@ if ('serviceWorker' in navigator) {
             .catch(err => console.error('SW Registration Failed:', err));
     });
 }
+// ===================== VIEW COUNTER =====================
+function updateViewCount() {
+    // specific URL for tracking hits to this app
+    // using a specific key for this app
+    const counterUrl = 'https://api.countapi.xyz/hit/oyo-air-quality-tracker-lawrence/visits';
+
+    fetch(counterUrl)
+        .then(res => res.json())
+        .then(data => {
+            const countElement = document.getElementById('view-count');
+            if (countElement) {
+                countElement.textContent = data.value.toLocaleString();
+            }
+        })
+        .catch(err => {
+            console.error('Error fetching view count:', err);
+            const countElement = document.getElementById('view-count');
+            if (countElement) countElement.textContent = 'N/A';
+        });
+}
+
+// Call on load
+updateViewCount();
