@@ -20,6 +20,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="leaflet-velocity/leaflet-velocity.min.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -28,61 +29,154 @@
 
 <body>
 
-    <!-- Header / Navbar -->
-    <nav class="navbar navbar-dark bg-glass fixed-top p-3">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <span class="navbar-brand mb-0 h1 fw-bold">
-                <i class="fas fa-leaf text-success"></i> Oyo<span class="text-light-50">Air</span>Track
-            </span>
-            <button class="btn btn-sm btn-outline-light rounded-pill" data-bs-toggle="modal" <i
-                class="fas fa-bullseye"></i> Impact
-            </button>
-            <button class="btn btn-sm btn-outline-light rounded-pill ms-2" data-bs-toggle="modal"
-                data-bs-target="#aboutModal">
-                <i class="fas fa-user-circle"></i> About
-            </button>
-        </div>
-    </nav>
+    <!-- LANDING PAGE -->
+    <div id="landing-page" class="landing-bg">
+        <!-- Hero Section -->
+        <header class="hero container text-center">
+            <div class="row min-vh-100 align-items-center">
+                <div class="col-lg-8 mx-auto">
+                    <div class="logo-badge mb-4 animate-up">
+                        <i class="fas fa-leaf text-success"></i> OyoAirTrack
+                    </div>
+                    <h1 class="display-3 fw-bold text-white mb-4 animate-up" style="animation-delay: 0.1s;">
+                        Breathing Data: Empowering <span class="text-gradient">Oyo State</span>
+                    </h1>
+                    <p class="lead text-white-50 mb-5 animate-up" style="animation-delay: 0.2s;">
+                        Democratizing environmental intelligence. We turn invisible air quality and heat data into
+                        actionable insights for a healthier, more resilient Africa.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 animate-up" style="animation-delay: 0.3s;">
+                        <button onclick="enterApp()" class="btn btn-primary btn-lg rounded-pill px-5 shadow-lg">
+                            Check Your Air Quality <i class="fas fa-arrow-right ms-2"></i>
+                        </button>
+                    </div>
 
-    <!-- Main Map Container -->
-    <div id="map"></div>
-
-    <!-- Floating Control Panel -->
-    <div id="controls" class="floating-panel">
-        <div class="panel-body">
-            <label for="lga-select" class="form-label text-muted text-uppercase fw-bold x-small">Monitor
-                Location</label>
-            <select id="lga-select" class="form-select border-0 shadow-none bg-light mb-2">
-                <option value="">Select LGA...</option>
-            </select>
-
-            <div class="collapse" id="customLoc">
-                <input type="number" id="custom-lat" class="form-control mb-1" placeholder="Lat (e.g 7.37)" />
-                <input type="number" id="custom-lng" class="form-control mb-1" placeholder="Lng (e.g 3.94)" />
-                <button id="submit-custom" class="btn btn-primary w-100 btn-sm">Check Coords</button>
+                    <!-- Pulse of Oyo (Live Feed) -->
+                    <div class="mt-5 animate-up" style="animation-delay: 0.4s;">
+                        <div class="pulse-container glass-panel">
+                            <span class="pulse-dot"></span>
+                            <span id="activity-ticker" class="small text-white-50">Pulse: Loading activity
+                                feed...</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </header>
 
-            <div class="text-center mt-2">
-                <small class="text-muted" style="font-size: 0.75rem; cursor: pointer;" data-bs-toggle="collapse"
-                    data-bs-target="#customLoc">
-                    Use Custom Coordinates
-                </small>
+        <!-- What/Why Section -->
+        <section class="container py-5 border-top border-white-10">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="icon-box mb-3"><i class="fas fa-question-circle text-info"></i></div>
+                        <h4 class="text-white">What is it?</h4>
+                        <p class="text-white-50 small">
+                            A zero-cost digital infrastructure that synthesizes global satellite data with localized
+                            mapping to monitor Oyo's environment in real-time.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="icon-box mb-3"><i class="fas fa-bullseye text-success"></i></div>
+                        <h4 class="text-white">Why it matters?</h4>
+                        <p class="text-white-50 small">
+                            Air quality is an invisible killer. By making it visible, we help reduce respiratory
+                            illnesses and build climate-resilient cities (SDG 3 & 11).
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-4 h-100">
+                        <div class="icon-box mb-3"><i class="fas fa-earth-africa text-warning"></i></div>
+                        <h4 class="text-white">The Purpose</h4>
+                        <p class="text-white-50 small">
+                            To bridge the data divide in low-resource settings, providing policymakers with the
+                            proof needed for sustainable urban planning.
+                        </p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="mt-3">
-                <button id="find-location" class="btn btn-success w-100 btn-sm">
-                    <i class="fas fa-crosshairs"></i> Find My Location
-                </button>
+        <!-- Testimonials -->
+        <section class="container py-5">
+            <h3 class="text-center text-white mb-5 fw-bold">Citizen Voice</h3>
+            <div class="row g-4" id="testimonial-container">
+                <!-- Testimonials will be injected here -->
             </div>
+        </section>
 
-            <div class="mt-2">
-                <button id="toggle-boundaries" class="btn btn-outline-info w-100 btn-sm">
-                    <i class="fas fa-layer-group"></i> Hide Boundaries
-                </button>
+        <footer class="py-5 text-center text-white-50 small border-top border-white-10">
+            Proudly aligned with the UN Sustainable Development Goals: 3, 9, 11, 13, & 17.
+        </footer>
+    </div>
+
+    <!-- MAIN APP (MAP) -->
+    <div id="app-container" style="display: none;">
+        <!-- Header / Navbar -->
+        <nav class="navbar navbar-dark bg-glass fixed-top p-3">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <span class="navbar-brand mb-0 h1 fw-bold cursor-pointer" onclick="backToHome()">
+                    <i class="fas fa-leaf text-success"></i> Oyo<span class="text-light-50">Air</span>Track
+                </span>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-light rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#impactModal">
+                        <i class="fas fa-bullseye"></i> Impact
+                    </button>
+                    <button class="btn btn-sm btn-outline-light rounded-pill" data-bs-toggle="modal"
+                        data-bs-target="#aboutModal">
+                        <i class="fas fa-user-circle"></i> About
+                    </button>
+                    <button class="btn btn-sm btn-danger rounded-pill" onclick="backToHome()">
+                        <i class="fas fa-times"></i> Exit
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Map Container -->
+        <div id="map"></div>
+
+        <!-- Floating Control Panel -->
+        <div id="controls" class="floating-panel">
+            <div class="panel-body">
+                <label for="lga-select" class="form-label text-muted text-uppercase fw-bold x-small">Monitor
+                    Location</label>
+                <select id="lga-select" class="form-select border-0 shadow-none bg-light mb-2">
+                    <option value="">Select LGA...</option>
+                </select>
+
+                <div class="collapse" id="customLoc">
+                    <input type="number" id="custom-lat" class="form-control mb-1" placeholder="Lat (e.g 7.37)" />
+                    <input type="number" id="custom-lng" class="form-control mb-1" placeholder="Lng (e.g 3.94)" />
+                    <button id="submit-custom" class="btn btn-primary w-100 btn-sm">Check Coords</button>
+                </div>
+
+                <div class="text-center mt-2">
+                    <small class="text-muted" style="font-size: 0.75rem; cursor: pointer;" data-bs-toggle="collapse"
+                        data-bs-target="#customLoc">
+                        Use Custom Coordinates
+                    </small>
+                </div>
+
+                <div class="mt-3">
+                    <button id="find-location" class="btn btn-success w-100 btn-sm">
+                        <i class="fas fa-crosshairs"></i> Find My Location
+                    </button>
+                </div>
+
+                <div class="mt-2 text-center text-white-50 x-small" style="font-size: 0.65rem;">
+                    Oyo Air Quality Tracker © 2026
+                    <div id="map-status" class="text-success mt-1"><i class="fas fa-sync-alt fa-spin"></i> Map
+                        Operational</div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Modals -->
     <!-- Impact Modal -->
     <div class="modal fade" id="impactModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -118,66 +212,32 @@
     <!-- About Modal -->
     <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content glass-modal">
+            <div class="modal-content glass-modal text-white">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold">About the Creator</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body text-white">
+                <div class="modal-body">
                     <div class="text-center mb-4">
-                        <div class="mb-2">
-                            <i class="fas fa-user-astronaut fa-3x text-success"></i>
-                        </div>
+                        <i class="fas fa-user-astronaut fa-3x text-success mb-2"></i>
                         <h5 class="fw-bold">Lawrence Oladeji</h5>
-                        <p class="text-white-50 small mb-0">Data Scientist & SDG Advocate</p>
-                        <p class="text-white-50 small">Building AI-Integrated Products for Good</p>
+                        <p class="text-white-50 small">Data Scientist & SDG Advocate</p>
                     </div>
-
                     <p class="small">
-                        I am an SDG advocate passionate about leveraging data and AI to solve real-world problems.
-                        This tool was built to democratize air quality data for Oyo State, empowering citizens to take
-                        action on Climate Change (SDG 13) and Health (SDG 3).
+                        Passionate about leveraging AI and open data for the Sustainable Development Goals.
+                        This tool democratizes air quality intelligence for Oyo State citizens.
                     </p>
-
                     <div class="d-flex justify-content-center gap-3 mt-4">
-                        <a href="mailto:oladeji.lawrence@gmail.com" class="btn btn-outline-light btn-sm">
-                            <i class="fas fa-envelope"></i> Email
-                        </a>
-                        <a href="https://wa.me/2349038819790" target="_blank" class="btn btn-outline-success btn-sm">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
+                        <a href="mailto:oladeji.lawrence@gmail.com" class="btn btn-outline-light btn-sm">Email</a>
+                        <a href="https://wa.me/2349038819790" target="_blank"
+                            class="btn btn-outline-success btn-sm">WhatsApp</a>
                     </div>
-
-                    <div class="mt-4 pt-3 border-top border-secondary text-center">
+                    <div class="mt-4 pt-3 border-top border-white-10 text-center">
                         <small class="text-white-50 d-block mb-1">Impact Tracking</small>
                         <span class="badge bg-info text-dark">
                             <i class="fas fa-eye"></i> <span id="view-count">Loading...</span> Views
                         </span>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Location Details Modal -->
-    <div class="modal fade" id="locationModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content glass-modal">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold">
-                        <i class="fas fa-map-marker-alt text-success"></i> Your Location Details
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="location-info" class="text-white">
-                        <!-- Location details will be populated here -->
-                    </div>
-                </div>
-                <div class="modal-footer border-0 justify-content-center">
-                    <button id="use-this-location" class="btn btn-success btn-sm">
-                        <i class="fas fa-check"></i> Use This Location
-                    </button>
                 </div>
             </div>
         </div>
