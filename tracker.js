@@ -521,7 +521,7 @@ function updateViewCount() {
                 countElement.textContent = (data.count + 154).toLocaleString();
             }
         }).catch(err => {
-            if (countElement) countElement.textContent = "2,530+";
+            if (countElement) countElement.textContent = "180+";
         });
 }
 updateViewCount();
