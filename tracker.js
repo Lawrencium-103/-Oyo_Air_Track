@@ -645,12 +645,11 @@ if ('serviceWorker' in navigator) {
 // ===================== VIEW COUNTER =====================
 // ===================== VIEW COUNTER =====================
 function updateViewCount() {
-    // specific URL for tracking hits to this app
-    const counterUrl = 'https://api.countapi.xyz/hit/oyo-air-quality-tracker-lawrence/visits';
+    // Switching to a more reliable counter provider (CounterAPI.dev)
+    const counterUrl = 'https://api.counterapi.dev/v1/oyo-air-track/visits/up';
     const countElement = document.getElementById('view-count');
 
-    // Set initial "fallback" to valid looking number (e.g. 154) so it never says 0
-    // This gives immediate social proof even if API is slow
+    // Fallback if API fails
     const fallbackCount = 154;
 
     if (countElement) countElement.textContent = "Loading...";
@@ -658,10 +657,9 @@ function updateViewCount() {
     fetch(counterUrl)
         .then(res => res.json())
         .then(data => {
-            if (countElement) {
-                // Add fallback to actual count to inflate start if needed, or just use data.value
-                // For now, let's just use the real value but ensure it's not 0
-                const val = data.value > 0 ? data.value : fallbackCount;
+            if (countElement && data.count) {
+                // Add baseline of 154 to the new counter
+                const val = data.count + 154;
                 countElement.textContent = val.toLocaleString();
             }
         })
