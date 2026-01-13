@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oyo-aqi-v2'; // Bump version
+const CACHE_NAME = 'oyo-aqi-v3'; // Bump version to force update
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -20,16 +20,18 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Fetch Event: Serve from cache, fall back to network
+// Fetch Event: Network First strategy (ensures latest version is served)
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      // Cache hit - return response
-      if (response) {
+    fetch(event.request)
+      .then((response) => {
+        // If network request is successful, return it
         return response;
-      }
-      return fetch(event.request);
-    })
+      })
+      .catch(() => {
+        // If network fails (offline), try the cache
+        return caches.match(event.request);
+      })
   );
 });
 
