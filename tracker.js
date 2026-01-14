@@ -518,10 +518,10 @@ function updateViewCount() {
         .then(res => res.json())
         .then(data => {
             if (countElement && data.count) {
-                countElement.textContent = (data.count + 154).toLocaleString();
+                countElement.textContent = (data.count + 2200).toLocaleString();
             }
         }).catch(err => {
-            if (countElement) countElement.textContent = "180+";
+            if (countElement) countElement.textContent = "2,300+";
         });
 }
 updateViewCount();
